@@ -10,8 +10,7 @@ pipeline {
     stages {
 	    
 	stage("Initialize") {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
+		steps { initializeApp() }
 		}
 
         stage("Build") {
@@ -27,6 +26,12 @@ pipeline {
 
 
 // steps
+def initializeApp() {
+   def dockerHome = tool 'myDocker'
+   env.PATH = "${dockerHome}/bin:${env.PATH}"	
+}
+
+
 def buildApp() {
 	dir ('section_4/code/cd_pipeline' ) {
 		def appImage = docker.build("hands-on-jenkins/myapp:${BUILD_NUMBER}")
