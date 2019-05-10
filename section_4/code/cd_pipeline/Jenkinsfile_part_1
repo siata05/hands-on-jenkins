@@ -9,9 +9,9 @@ pipeline {
 
     stages {
 	    
-	//stage("Initialize") {
-	//	steps { initializeApp() }
-	//	}
+	stage("Initialize") {
+		steps { initializeApp() }
+		}
 
         stage("Build") {
             steps { buildApp() }
