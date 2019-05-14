@@ -62,6 +62,11 @@ def deploy(environment) {
 		containerName = "app_dev"
 		port = "8888"
 	} 
+	
+	if ("${environment}" == 'stage') {
+		containerName = "app_stage"
+		port = "88"
+	}
 	else {
 		println "Environment not valid"
 		System.exit(0)
@@ -76,6 +81,11 @@ def deploy(environment) {
 def runUnittests(){
 	sh "python section_4/code/cd_pipeline/tests/test_flask_app.py"
 }
+
+def runUAT(port){
+	sh "section_4/code/cd_pipeline/tests/runUAT.sh ${port}"
+}
+
 	
 	
 	
